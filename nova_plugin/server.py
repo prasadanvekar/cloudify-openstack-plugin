@@ -150,8 +150,8 @@ def create(nova_client, neutron_client, args, **kwargs):
         server['nics'] = \
             server.get('nics', []) + [{'net-id': management_network_id}]
 
-    _handle_image_or_flavor(server, nova_client, 'image')
-    _handle_image_or_flavor(server, nova_client, 'flavor')
+    for prop_name in ['image', 'flavor', 'host', 'os']:
+       _handle_image_or_flavor(server, nova_client, prop_name)
 
     if provider_context.agents_security_group:
         security_groups = server.get('security_groups', [])
@@ -295,7 +295,7 @@ def start(nova_client, start_retry_interval, private_key_path, **kwargs):
             ctx.instance.runtime_properties[ADMIN_PASSWORD_PROPERTY] = password
             ctx.logger.info('Server has been set with a password')
 
-        _set_network_and_ip_runtime_properties(server)
+        # _set_network_and_ip_runtime_properties(server)
         return
 
     server_task_state = getattr(server, OS_EXT_STS_TASK_STATE)
@@ -814,27 +814,56 @@ def _validate_security_group_and_server_connection_status(
 
 
 def _handle_image_or_flavor(server, nova_client, prop_name):
-    if prop_name not in server and '{0}_name'.format(prop_name) not in server:
-        # setting image or flavor - looking it up by name; if not found, then
-        # the value is assumed to be the id
-        server[prop_name] = ctx.node.properties[prop_name]
 
-        # temporary error message: once the 'image' and 'flavor' properties
-        # become mandatory, this will become less relevant
-        if not server[prop_name]:
-            raise NonRecoverableError(
-                'must set {0} by either setting a "{0}" property or by setting'
-                ' a "{0}" or "{0}_name" (deprecated) field under the "server" '
-                'property'.format(prop_name))
+    print "~~~~~~~~~~\n{}\n~~~~~~~~~~~\n".format(prop_name)
 
-        image_or_flavor = \
-            nova_client.cosmo_get_if_exists(prop_name, name=server[prop_name])
-        if image_or_flavor:
-            server[prop_name] = image_or_flavor.id
-    else:  # Deprecated sugar
-        if '{0}_name'.format(prop_name) in server:
-            prop_name_plural = nova_client.cosmo_plural(prop_name)
-            server[prop_name] = \
-                getattr(nova_client, prop_name_plural).find(
-                    name=server['{0}_name'.format(prop_name)]).id
-            del server['{0}_name'.format(prop_name)]
+    # TODO : This is the place we need to get to work
+    tosca2os = {
+        'num_cpus': 'vcpus',
+        'disk_size': 'disk',
+        'mem_size': 'ram'
+    }
+
+    if prop_name == 'host' and prop_name in server:
+        sat_set = nova_client.flavors.list()
+        for key in server[prop_name]:
+            print server['host'][key]
+            sat_set = [d for d in sat_set
+                       if d.to_dict()[tosca2os[key]] >= server['host'][key]]
+
+        server['flavor'] = sat_set[0].id
+        print server['flavor']
+
+    if prop_name == 'os' and prop_name in server:
+        sat_set = [d for d in nova_client.images.list()
+                   if server['os']['distribution'].lower() in d.name.lower()]
+
+        print sat_set[0].name, sat_set[0].id
+        server['image'] = sat_set[0].id
+
+    ######################################################################
+    else:
+        if prop_name not in server and '{0}_name'.format(prop_name) not in server:
+            # setting image or flavor - looking it up by name; if not found, then
+            # the value is assumed to be the id
+            server[prop_name] = ctx.node.properties[prop_name]
+
+            # temporary error message: once the 'image' and 'flavor' properties
+            # become mandatory, this will become less relevant
+            if not server[prop_name]:
+                raise NonRecoverableError(
+                    'must set {0} by either setting a "{0}" property or by setting'
+                    ' a "{0}" or "{0}_name" (deprecated) field under the "server" '
+                    'property'.format(prop_name))
+
+            image_or_flavor = \
+                nova_client.cosmo_get_if_exists(prop_name, name=server[prop_name])
+            if image_or_flavor:
+                server[prop_name] = image_or_flavor.id
+        else:  # Deprecated sugar
+            if '{0}_name'.format(prop_name) in server:
+                prop_name_plural = nova_client.cosmo_plural(prop_name)
+                server[prop_name] = \
+                    getattr(nova_client, prop_name_plural).find(
+                        name=server['{0}_name'.format(prop_name)]).id
+                del server['{0}_name'.format(prop_name)]
