@@ -825,21 +825,26 @@ def _handle_image_or_flavor(server, nova_client, prop_name):
     }
 
     if prop_name == 'host' and prop_name in server:
-        sat_set = nova_client.flavors.list()
-        for key in server[prop_name]:
-            print server['host'][key]
-            sat_set = [d for d in sat_set
-                       if d.to_dict()[tosca2os[key]] >= server['host'][key]]
+        sat_set = {}
+        for flavor in nova_client.flavors.list():
+            sat_set[flavor.id] = 0
+            for key in server[prop_name]:
+                new_val = flavor.to_dict()[tosca2os[key]] - server['host'][key]
+                if new_val >= 0:
+                    sat_set[flavor.id] += new_val
+                else:
+                    del(sat_set[flavor.id])
+                    break
 
-        server['flavor'] = sat_set[0].id
-        print server['flavor']
+        server['flavor'] = min(sat_set, key=sat_set.get)
+        ctx.logger.info("{} elected as flavor".format(server['flavor']))
 
     if prop_name == 'os' and prop_name in server:
         sat_set = [d for d in nova_client.images.list()
-                   if server['os']['distribution'].lower() in d.name.lower()]
+                   if server['os']['type'].lower() in d.name.lower()]
 
-        print sat_set[0].name, sat_set[0].id
         server['image'] = sat_set[0].id
+        ctx.logger.info("{} elected as image".format(server['image']))
 
     ######################################################################
     else:
