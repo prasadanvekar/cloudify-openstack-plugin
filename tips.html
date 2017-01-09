@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+  <title>Tips &mdash; cloudify-openstack-plugin 2.0a1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'2.0a1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="cloudify-openstack-plugin 2.0a1 documentation" href="index.html"/>
+        <link rel="next" title="Operations" href="operations.html"/>
+        <link rel="prev" title="Examples" href="examples.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  <style>
+    .search-reset-start {
+        color: #463E3F;
+        float: right;
+        position: relative;
+        top: -25px;
+        left: -10px;
+        z-index: 10;
+     }
+     .search-reset-start:hover {
+        cursor: pointer;
+        color: #2980B9;
+     }
+     #search-box-id {
+        padding-right: 25px;
+     }
+  </style>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'
+    rel='stylesheet' type='text/css'>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="DocSite-globalNav topNav">
+        <ul>
+            <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+            <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+            <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+        </ul>
+    </div>
+
+  <a class="DocSite-nav" href="http://docs.getcloudify.org/">
+    <img class="DocSiteNav-logo"
+      src="_static/images/logo.png"
+      alt="Cloudify Logo">
+    <div class="DocSiteNav-title">
+      Cloudify Documentation
+    </div>
+  </a>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+
+      <div style="background-color:#41b9d2;height=80px;margin:'auto auto auto auto'">
+        <a class="DocSiteProduct-header DocSiteProduct-header--core"
+           href="index.html">
+          <div class="DocSiteProduct-productName">
+            <div class="DocSiteProduct-logoText">
+                cloudify-openstack-plugin
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div id="menu-id" class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Openstack Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#node-types">Node Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#types-common-behaviors">Types&#8217; Common Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#relationships">Relationships</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nova-net.html">Nova-net Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nova-net.html#nova-net-node-types">Nova-net Node Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-i">Example I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-ii">Example II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iii">Example III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iv">Example IV</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#misc">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+</ul>
+
+        
+
+
+    <div class="DocSite-sideNav topNav">
+       <ul class="">
+       <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+       <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+       <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+       <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+       </ul>
+     </div>
+
+    
+    <div id="plugin-links">
+        <h3>Official Plugins</h3>
+        <ul>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../script/">
+                script</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../aws/">
+                aws</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../fabric/">
+                fabric</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vsphere/">
+                vsphere</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../openstack/">
+                openstack</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../docker/">
+                docker</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../diamond/">
+                diamond</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../host-pool/">
+                host-pool</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../psutil/">
+                psutil</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../gcp/">
+                gcp</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../ldap/">
+                ldap</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vcloud/">
+                vcloud</a>
+            </li>
+        
+        </ul>
+    </div>
+    
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">cloudify-openstack-plugin</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Tips</a></li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="tips">
+<h1>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><p class="first">It is highly recommended to <strong>ensure that Openstack names are unique</strong> (for a given type): While Openstack allows for same name objects, having identical names for objects of the same type might lead to ambiguities and errors.</p>
+</li>
+<li><p class="first">To set up DNS servers for Openstack servers (whether it&#8217;s the Cloudify Manager or application VMs), one may use the Openstack <code class="docutils literal"><span class="pre">dns_nameservers</span></code> parameter for the [Subnet type](#cloudifyopenstacknodessubnet) - that is, pass the parameter directly to Neutron by using the <code class="docutils literal"><span class="pre">args</span></code> input of the operations in Subnet node, e.g.:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">my_subnet_node</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">dns_nameservers</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">1.2.3.4</span><span class="p p-Indicator">]</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.validation</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">creation</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">dns_nameservers</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">1.2.3.4</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>This will set up <code class="docutils literal"><span class="pre">1.2.3.4</span></code> as the DNS server for all servers on this subnet.</p>
+</li>
+<li><p class="first">Public keys, unlike the rest of the Openstack resources, are user-based rather than tenant-based. When errors indicate a missing keypair, make sure you&#8217;re using the correct user rather than tenant.</p>
+</li>
+<li><p class="first">ICMP rules show up on Horizon (Openstack GUI) as ones defined using <code class="docutils literal"><span class="pre">type</span></code> and <code class="docutils literal"><span class="pre">code</span></code> fields, rather than a port range. However, in the actual Neutron (and Nova, in case of Nova-net security groups) service, these fields are represented using the standard port range fields (i.e., <code class="docutils literal"><span class="pre">type</span></code> and <code class="docutils literal"><span class="pre">code</span></code> correspond to <code class="docutils literal"><span class="pre">port_range_min</span></code> and <code class="docutils literal"><span class="pre">port_range_max</span></code> (respectively) on Neutron security groups, and to <code class="docutils literal"><span class="pre">from_port</span></code> and <code class="docutils literal"><span class="pre">to_port</span></code> (respectively) on Nova-net security groups).</p>
+<dl class="docutils">
+<dt>** For example, to set a security group rule which allows <strong>ping</strong> from anywhere, the following setting may be declared in the blueprint:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">protocol</span></code>: <code class="docutils literal"><span class="pre">icmp</span></code></li>
+<li><code class="docutils literal"><span class="pre">port_range_min</span></code>: <code class="docutils literal"><span class="pre">0</span></code> (type)</li>
+<li><code class="docutils literal"><span class="pre">port_range_max</span></code>: <code class="docutils literal"><span class="pre">0</span></code> (code)</li>
+<li><code class="docutils literal"><span class="pre">remote_ip_prefix</span></code>: <code class="docutils literal"><span class="pre">0.0.0.0/0</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">To use Openstack Neutron&#8217;s ML2 extensions, use the <code class="docutils literal"><span class="pre">args</span></code> input for the Network&#8217;s <code class="docutils literal"><span class="pre">create</span></code> operation. For example, the <a class="reference external" href="http://developer.openstack.org/api-ref-networking-v2-ext.html#createProviderNetwork">provider network</a> may be set in the following way:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">my_network</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Network</span>
+  <span class="l l-Scalar l-Scalar-Plain">...</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="c1"># Note that for this parameter to work, OpenStack must be configured to use Neutron&#39;s ML2 extensions</span>
+            <span class="l l-Scalar l-Scalar-Plain">provider:network_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">vxlan</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Ordering NICs in the Openstack plugin can be done in the 1.4 version of the Openstack plugin by simply stating the relationships to the various networks (or ports) in the desired order, e.g.:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">node_templates</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Server</span>
+    <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network1</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.connected_to</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network2</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.connected_to</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">network1</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Network</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network1</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">network2</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Network</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network2</span>
+</pre></div>
+</div>
+<p>In the example above, network1 will be connected to a NIC preceding the one network2 will - however these wont be eth0/eth1, but rather eth1/eth2 - because by default, the management network will be prepended to the networks list (i.e. it&#8217;ll be assigned to eth0).
+To avoid this prepending, one should explicitly declare a relationship to the management network, where the network&#8217;s represented in the blueprint by an existing resource (using the &#8220;use_external_resource&#8221; property).
+This will cause the management network adhere the NICs ordering as the rest of them.
+Example:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">node_templates</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Server</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">management_network_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network2</span>
+    <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network1</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.connected_to</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network2</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.connected_to</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network3</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.connected_to</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">network1</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Network</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network1</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">network2</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Network</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">use_external_resource</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network2</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">network3</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Network</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">use_external_resource</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">network3</span>
+</pre></div>
+</div>
+<p>In this example, &#8220;network2&#8221; represents the management network, yet it&#8217;ll be connected to eth1, while &#8220;network1&#8221; will take eth0, and &#8220;network3&#8221; (which also happened to already exist) will get connected to eth2.</p>
+<blockquote>
+<div><p>The server&#8217;s property &#8220;management_network_name: network2&#8221; is not mandatory for this to work - this was just to make the example clear - yet the management network can also be inferred from the provider context (which is what happens when this property isn&#8217;t explicitly set). Were the provider context to have &#8220;network2&#8221; set as the management network, this example would&#8217;ve worked just the same with this property omitted.</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="misc">
+<h1>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>The plugin&#8217;s operations are each <strong>transactional</strong>
+(and therefore also retryable on failures),
+yet not <strong>idempotent</strong>.
+Attempting to execute the same operation twice is likely to fail.</li>
+<li>Over this documentation, it&#8217;s been mentioned multiple times that some configuration-saving information may be available in the Provider Context.
+The Openstack manager blueprint and Openstack provider both create this relevant information,
+and therefore if either was used for bootstrapping, the Provider Context will be available for the Openstack plugin to use.</li>
+</ul>
+<p>The exact details of the structure of the Openstack Provider Context are not documented since this feature is going through deprecation and will be replaced with a more advanced one.</p>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="operations.html" class="btn btn-neutral float-right" title="Operations"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="examples.html" class="btn btn-neutral" title="Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+  Copyright © 2016 GigaSpaces Technologies Ltd.
+  <br>
+  </p>
+<p>
+Cloudify docs are generated using <A HREF="http://sphinx-doc.org/">Sphinx</A> using a theme provided by <a href="http://readthedocs.org">Read the Docs</a>. 
+</p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+      <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v: sphinx-docs
+          <span class="fa fa-caret-down"></span>
+      </span>
+      <div class="rst-other-versions">
+          <dl>
+              <dt>Branches</dt>
+              <dd><a href="sphinx-docs/tips.html">sphinx-docs</a></dd>
+          </dl>
+      </div>
+  </div>
+  
+  
+</body>
+</html>

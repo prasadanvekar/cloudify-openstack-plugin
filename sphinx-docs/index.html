@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+  <title>cloudify-openstack-plugin documentation &mdash; cloudify-openstack-plugin 2.0a1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'2.0a1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="cloudify-openstack-plugin 2.0a1 documentation" href="#"/>
+        <link rel="next" title="Openstack Configuration" href="configuration.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  <style>
+    .search-reset-start {
+        color: #463E3F;
+        float: right;
+        position: relative;
+        top: -25px;
+        left: -10px;
+        z-index: 10;
+     }
+     .search-reset-start:hover {
+        cursor: pointer;
+        color: #2980B9;
+     }
+     #search-box-id {
+        padding-right: 25px;
+     }
+  </style>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'
+    rel='stylesheet' type='text/css'>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="DocSite-globalNav topNav">
+        <ul>
+            <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+            <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+            <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+        </ul>
+    </div>
+
+  <a class="DocSite-nav" href="http://docs.getcloudify.org/">
+    <img class="DocSiteNav-logo"
+      src="_static/images/logo.png"
+      alt="Cloudify Logo">
+    <div class="DocSiteNav-title">
+      Cloudify Documentation
+    </div>
+  </a>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+
+      <div style="background-color:#41b9d2;height=80px;margin:'auto auto auto auto'">
+        <a class="DocSiteProduct-header DocSiteProduct-header--core"
+           href="index.html">
+          <div class="DocSiteProduct-productName">
+            <div class="DocSiteProduct-logoText">
+                cloudify-openstack-plugin
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div id="menu-id" class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Openstack Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#node-types">Node Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#types-common-behaviors">Types&#8217; Common Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#relationships">Relationships</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nova-net.html">Nova-net Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nova-net.html#nova-net-node-types">Nova-net Node Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-i">Example I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-ii">Example II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iii">Example III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iv">Example IV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html#misc">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+</ul>
+
+        
+
+
+    <div class="DocSite-sideNav topNav">
+       <ul class="">
+       <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+       <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+       <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+       <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+       </ul>
+     </div>
+
+    
+    <div id="plugin-links">
+        <h3>Official Plugins</h3>
+        <ul>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../script/">
+                script</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../aws/">
+                aws</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../fabric/">
+                fabric</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vsphere/">
+                vsphere</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../openstack/">
+                openstack</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../docker/">
+                docker</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../diamond/">
+                diamond</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../host-pool/">
+                host-pool</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../psutil/">
+                psutil</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../gcp/">
+                gcp</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../ldap/">
+                ldap</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vcloud/">
+                vcloud</a>
+            </li>
+        
+        </ul>
+    </div>
+    
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">cloudify-openstack-plugin</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="#">Docs</a> &raquo;</li>
+  <li><a href="">cloudify-openstack-plugin documentation</a></li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="cloudify-openstack-plugin-documentation">
+<h1>cloudify-openstack-plugin documentation<a class="headerlink" href="#cloudify-openstack-plugin-documentation" title="Permalink to this headline">¶</a></h1>
+<p>The OpenStack plugin allows users to use an OpenStack based cloud infrastructure for deploying services and applications.
+For more information about OpenStack, please refer to: <a class="reference external" href="https://www.openstack.org/">https://www.openstack.org/</a>.</p>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Openstack Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#node-types">Node Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#types-common-behaviors">Types&#8217; Common Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#relationships">Relationships</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nova-net.html">Nova-net Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nova-net.html#nova-net-node-types">Nova-net Node Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-i">Example I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-ii">Example II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iii">Example III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iv">Example IV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html#misc">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+</ul>
+</div>
+<div class="section" id="plugin-requirements">
+<h2>Plugin Requirements<a class="headerlink" href="#plugin-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Python versions:
+* 2.7.x</li>
+<li>If the plugin is installed from source,
+then the following system dependencies are required:<ul>
+<li><code class="docutils literal"><span class="pre">gcc</span></code></li>
+<li><code class="docutils literal"><span class="pre">gcc-c++</span></code></li>
+<li><code class="docutils literal"><span class="pre">python-devel</span></code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="compatibility">
+<h2>Compatibility<a class="headerlink" href="#compatibility" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><em>Mitaka</em> official support*</li>
+<li><em>Liberty</em> official support*</li>
+<li><em>Kilo</em> official support</li>
+<li><em>Juno</em>, <em>Icehouse</em> previously supported, not currently tested.</li>
+</ul>
+<p>* support on Mitaka and Liberty currently requires the Keystone URL in [Openstack Configuration](#openstack-configuration) to be explicitly set to <cite>/v2.0</cite>: eg <cite>http://192.0.2.200:5000/v2.0</cite> instead of just <cite>http://192.0.2.200:5000</cite>.</p>
+<p>The Openstack plugin uses various Openstack clients packages. The versions used in Openstack Plugin are as follows:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/openstack/keystoneauth">keystoneauth1</a> - 2.12.1</li>
+<li><a class="reference external" href="https://github.com/openstack/python-keystoneclient">Keystone client</a> - 3.5.0</li>
+<li><a class="reference external" href="https://github.com/openstack/python-novaclient">Nova client</a> - 7.0.0</li>
+<li><a class="reference external" href="https://github.com/openstack/python-neutronclient">Neutron client</a> - 6.0.0</li>
+<li><a class="reference external" href="https://github.com/openstack/python-cinderclient">Cinder client</a> - 1.9.0</li>
+<li><a class="reference external" href="https://github.com/openstack/python-glanceclient">Glance client</a> - 2.5.0</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Openstack Configuration"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+  Copyright © 2016 GigaSpaces Technologies Ltd.
+  <br>
+  </p>
+<p>
+Cloudify docs are generated using <A HREF="http://sphinx-doc.org/">Sphinx</A> using a theme provided by <a href="http://readthedocs.org">Read the Docs</a>. 
+</p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+      <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v: sphinx-docs
+          <span class="fa fa-caret-down"></span>
+      </span>
+      <div class="rst-other-versions">
+          <dl>
+              <dt>Branches</dt>
+              <dd><a href="index.html">sphinx-docs</a></dd>
+          </dl>
+      </div>
+  </div>
+  
+  
+</body>
+</html>

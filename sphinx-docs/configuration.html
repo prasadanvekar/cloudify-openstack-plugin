@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+  <title>Openstack Configuration &mdash; cloudify-openstack-plugin 2.0a1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'2.0a1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="cloudify-openstack-plugin 2.0a1 documentation" href="index.html"/>
+        <link rel="next" title="Types" href="types.html"/>
+        <link rel="prev" title="cloudify-openstack-plugin documentation" href="index.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  <style>
+    .search-reset-start {
+        color: #463E3F;
+        float: right;
+        position: relative;
+        top: -25px;
+        left: -10px;
+        z-index: 10;
+     }
+     .search-reset-start:hover {
+        cursor: pointer;
+        color: #2980B9;
+     }
+     #search-box-id {
+        padding-right: 25px;
+     }
+  </style>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'
+    rel='stylesheet' type='text/css'>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="DocSite-globalNav topNav">
+        <ul>
+            <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+            <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+            <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+        </ul>
+    </div>
+
+  <a class="DocSite-nav" href="http://docs.getcloudify.org/">
+    <img class="DocSiteNav-logo"
+      src="_static/images/logo.png"
+      alt="Cloudify Logo">
+    <div class="DocSiteNav-title">
+      Cloudify Documentation
+    </div>
+  </a>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+
+      <div style="background-color:#41b9d2;height=80px;margin:'auto auto auto auto'">
+        <a class="DocSiteProduct-header DocSiteProduct-header--core"
+           href="index.html">
+          <div class="DocSiteProduct-productName">
+            <div class="DocSiteProduct-logoText">
+                cloudify-openstack-plugin
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div id="menu-id" class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Openstack Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#node-types">Node Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#types-common-behaviors">Types&#8217; Common Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#relationships">Relationships</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nova-net.html">Nova-net Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nova-net.html#nova-net-node-types">Nova-net Node Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-i">Example I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-ii">Example II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iii">Example III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iv">Example IV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html#misc">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+</ul>
+
+        
+
+
+    <div class="DocSite-sideNav topNav">
+       <ul class="">
+       <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+       <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+       <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+       <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+       </ul>
+     </div>
+
+    
+    <div id="plugin-links">
+        <h3>Official Plugins</h3>
+        <ul>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../script/">
+                script</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../aws/">
+                aws</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../fabric/">
+                fabric</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vsphere/">
+                vsphere</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../openstack/">
+                openstack</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../docker/">
+                docker</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../diamond/">
+                diamond</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../host-pool/">
+                host-pool</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../psutil/">
+                psutil</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../gcp/">
+                gcp</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../ldap/">
+                ldap</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vcloud/">
+                vcloud</a>
+            </li>
+        
+        </ul>
+    </div>
+    
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">cloudify-openstack-plugin</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Openstack Configuration</a></li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="openstack-configuration">
+<h1>Openstack Configuration<a class="headerlink" href="#openstack-configuration" title="Permalink to this headline">¶</a></h1>
+<p>The Openstack plugin requires credentials and endpoint setup information in order to authenticate and interact with Openstack.</p>
+<p>This information will be gathered by the plugin from the following sources,
+each source possibly partially or completely overriding values gathered from previous ones:</p>
+<ol class="arabic simple">
+<li>environment variables for each of the configuration parameters.</li>
+<li>JSON file at <code class="docutils literal"><span class="pre">~/openstack_config.json</span></code> or at a path specified by the value of an environment variable named <code class="docutils literal"><span class="pre">OPENSTACK_CONFIG_PATH</span></code></li>
+<li>values specified in the <code class="docutils literal"><span class="pre">openstack_config</span></code> property for the node whose operation is currently getting executed (in the case of relationship operations, the <code class="docutils literal"><span class="pre">openstack_config</span></code> property of either the <strong>source</strong> or <strong>target</strong> nodes will be used if available, with the <strong>source</strong>&#8216;s one taking precedence).</li>
+</ol>
+<p>The structure of the JSON file in section (2), as well as of the <code class="docutils literal"><span class="pre">openstack_config</span></code> property in section (3), is as follows:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tenant_name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;auth_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;nova_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;neutron_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;custom_configuration&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">username</span></code> username for authentication with Openstack Keystone service.</li>
+<li><code class="docutils literal"><span class="pre">password</span></code> password for authentication with Openstack Keystone service.</li>
+<li><code class="docutils literal"><span class="pre">tenant_name</span></code> name of the tenant to be used.</li>
+<li><code class="docutils literal"><span class="pre">auth_url</span></code> URL of the Openstack Keystone service.</li>
+<li><code class="docutils literal"><span class="pre">region</span></code> Openstack region to be used. This may be optional when there&#8217;s but a single region.</li>
+<li><code class="docutils literal"><span class="pre">nova_url</span></code> (<strong>DEPRECATED - instead, use ``custom_configuration`` to pass ``bypass_url`` directly to the Nova client</strong>) explicit URL for the Openstack Nova service. This may be used to override the URL for the Nova service that is listed in the Keystone service.</li>
+<li><code class="docutils literal"><span class="pre">neutron_url</span></code> (<strong>DEPRECATED - instead, use ``custom_configuration`` to pass ``endpoint_url`` directly to the Neutron client</strong>) explicit URL for the Openstack Neutron service. This may be used to override the URL for the Neutron service that is listed in the Keystone service.</li>
+<li><code class="docutils literal"><span class="pre">custom_configuration</span></code> a dictionary which allows overriding or directly passing custom configuration parameter to each of the Openstack clients, by using any of the relevant keys: <code class="docutils literal"><span class="pre">keystone_client</span></code>, <code class="docutils literal"><span class="pre">nova_client</span></code>, <code class="docutils literal"><span class="pre">neutron_client</span></code> or <code class="docutils literal"><span class="pre">cinder_client</span></code>.
+* Parameters passed directly to Openstack clients using the <code class="docutils literal"><span class="pre">custom_configuration</span></code> mechanism will override other definitions (e.g. any of the common Openstack configuration parameters listed above, such as <code class="docutils literal"><span class="pre">username</span></code> and <code class="docutils literal"><span class="pre">tenant_name</span></code>)
+* The following is an example for the usage of the <code class="docutils literal"><span class="pre">custom_configuration</span></code> section in a blueprint:</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">custom_configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">nova_client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">bypass_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nova-endpoint-url</span>
+    <span class="l l-Scalar l-Scalar-Plain">nova_specific_key_1</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">value_1</span>
+    <span class="l l-Scalar l-Scalar-Plain">nova_specific_key_2</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">value_2</span>
+  <span class="l l-Scalar l-Scalar-Plain">neutron_client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">endpoint_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">neutron-endpoint-url</span>
+  <span class="l l-Scalar l-Scalar-Plain">keystone_client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">..</span>
+  <span class="l l-Scalar l-Scalar-Plain">cinder_client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">..</span>
+</pre></div>
+</div>
+<p>The environment variables mentioned in (1) are the standard Openstack environment variables equivalent to the ones in the JSON file or <code class="docutils literal"><span class="pre">openstack_config</span></code> property. In their respective order, they are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">OS_USERNAME</span></code></li>
+<li><code class="docutils literal"><span class="pre">OS_PASSWORD</span></code></li>
+<li><code class="docutils literal"><span class="pre">OS_TENANT_NAME</span></code></li>
+<li><code class="docutils literal"><span class="pre">OS_AUTH_URL</span></code></li>
+<li><code class="docutils literal"><span class="pre">OS_REGION_NAME</span></code></li>
+<li><code class="docutils literal"><span class="pre">NOVACLIENT_BYPASS_URL</span></code></li>
+<li><code class="docutils literal"><span class="pre">OS_URL</span></code></li>
+</ul>
+<p><strong>Note</strong>: <code class="docutils literal"><span class="pre">custom_configuration</span></code> doesn&#8217;t have an equivalent standard Openstack environment variable.</p>
+<blockquote>
+<div>The Openstack manager blueprint stores the Openstack configuration used for the bootstrap process in a JSON file as described in (2) at
+<code class="docutils literal"><span class="pre">~/openstack-config.json</span></code>.
+Therefore, if they&#8217;ve been used for bootstrap,
+the Openstack configuration for applications isn&#8217;t required as the plugin will default to these same settings.</div></blockquote>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="types.html" class="btn btn-neutral float-right" title="Types"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="cloudify-openstack-plugin documentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+  Copyright © 2016 GigaSpaces Technologies Ltd.
+  <br>
+  </p>
+<p>
+Cloudify docs are generated using <A HREF="http://sphinx-doc.org/">Sphinx</A> using a theme provided by <a href="http://readthedocs.org">Read the Docs</a>. 
+</p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+      <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v: sphinx-docs
+          <span class="fa fa-caret-down"></span>
+      </span>
+      <div class="rst-other-versions">
+          <dl>
+              <dt>Branches</dt>
+              <dd><a href="configuration.html">sphinx-docs</a></dd>
+          </dl>
+      </div>
+  </div>
+  
+  
+</body>
+</html>

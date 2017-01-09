@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+  <title>Types &mdash; cloudify-openstack-plugin 2.0a1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'2.0a1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="cloudify-openstack-plugin 2.0a1 documentation" href="index.html"/>
+        <link rel="next" title="Nova-net Support" href="nova-net.html"/>
+        <link rel="prev" title="Openstack Configuration" href="configuration.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  <style>
+    .search-reset-start {
+        color: #463E3F;
+        float: right;
+        position: relative;
+        top: -25px;
+        left: -10px;
+        z-index: 10;
+     }
+     .search-reset-start:hover {
+        cursor: pointer;
+        color: #2980B9;
+     }
+     #search-box-id {
+        padding-right: 25px;
+     }
+  </style>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'
+    rel='stylesheet' type='text/css'>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="DocSite-globalNav topNav">
+        <ul>
+            <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+            <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+            <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+        </ul>
+    </div>
+
+  <a class="DocSite-nav" href="http://docs.getcloudify.org/">
+    <img class="DocSiteNav-logo"
+      src="_static/images/logo.png"
+      alt="Cloudify Logo">
+    <div class="DocSiteNav-title">
+      Cloudify Documentation
+    </div>
+  </a>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+
+      <div style="background-color:#41b9d2;height=80px;margin:'auto auto auto auto'">
+        <a class="DocSiteProduct-header DocSiteProduct-header--core"
+           href="index.html">
+          <div class="DocSiteProduct-productName">
+            <div class="DocSiteProduct-logoText">
+                cloudify-openstack-plugin
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div id="menu-id" class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Openstack Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#node-types">Node Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#types-common-behaviors">Types&#8217; Common Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relationships">Relationships</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nova-net.html">Nova-net Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nova-net.html#nova-net-node-types">Nova-net Node Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-i">Example I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-ii">Example II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iii">Example III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iv">Example IV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html#misc">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+</ul>
+
+        
+
+
+    <div class="DocSite-sideNav topNav">
+       <ul class="">
+       <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+       <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+       <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+       <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+       </ul>
+     </div>
+
+    
+    <div id="plugin-links">
+        <h3>Official Plugins</h3>
+        <ul>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../script/">
+                script</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../aws/">
+                aws</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../fabric/">
+                fabric</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vsphere/">
+                vsphere</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../openstack/">
+                openstack</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../docker/">
+                docker</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../diamond/">
+                diamond</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../host-pool/">
+                host-pool</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../psutil/">
+                psutil</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../gcp/">
+                gcp</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../ldap/">
+                ldap</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vcloud/">
+                vcloud</a>
+            </li>
+        
+        </ul>
+    </div>
+    
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">cloudify-openstack-plugin</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Types</a></li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="types">
+<h1>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="node-types">
+<h2>Node Types<a class="headerlink" href="#node-types" title="Permalink to this headline">¶</a></h2>
+<dl class="node">
+<dt id="cloudify.openstack.nodes.Server">
+<code class="descname">cloudify.openstack.nodes.Server</code><a class="headerlink" href="#cloudify.openstack.nodes.Server" title="Permalink to this definition">¶</a></dt>
+<dd><p>An OpenStack server.</p>
+<p>Derived from: cloudify.nodes.Compute</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">see Openstack Configuraion</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>image</dt>
+<dd>The image for the server. May receive either the ID or the name of the image. note: This property is currently optional for backwards compatibility, but will be modified to become a required property in future versions (Default: &#8216;&#8217;).</dd>
+<dt>management_network_name</dt>
+<dd>Cloudify&#8217;s management network name. Every server should be connected to the management network. If the management network&#8217;s name information is available in the Provider Context, this connection is made automatically and there&#8217;s no need to override this property (See the Misc section for more information on the Openstack Provider Context). Otherwise, it is required to set the value of this property to the management network name as it was set in the bootstrap process. Note: When using Nova-net Openstack (see the Nova-net Support section), don&#8217;t set this property. Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: what is this</p>
+</dd>
+<dt>server</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value server configuration as described in OpenStack compute create server API. (DEPRECATED - Use the args input in create operation instead)</p>
+</dd>
+<dt>flavor</dt>
+<dd>The flavor for the server. May receive either the ID or the name of the flavor. note: This property is currently optional for backwards compatibility, but will be modified to become a required property in future versions (Default: &#8216;&#8217;).</dd>
+<dt>use_password</dt>
+<dd><p class="first"><strong>required</strong></p>
+<p class="last">A boolean describing whether this server image supports user-password authentication. Images that do should post the administrator user&#8217;s password to the Openstack metadata service (e.g. via cloudbase); The password would then be retrieved by the plugin, decrypted using the server&#8217;s keypair and then saved in the server&#8217;s runtime properties.</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.WindowsServer">
+<code class="descname">cloudify.openstack.nodes.WindowsServer</code><a class="headerlink" href="#cloudify.openstack.nodes.WindowsServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>This type has the same properties and operations-mapping as the type above (as it derives from it), yet it overrides some of the agent and plugin installations operations-mapping derived from the built-in cloudify.nodes.Compute type. Use this type when working with a Windows server.</p>
+<p>Additionally, the default value for the use_password property is overridden for this type, and is set to true. When using an image with a preset password, it should be modified to false.</p>
+<p>Derived from: <a class="reference internal" href="#cloudify.openstack.nodes.Server" title="cloudify.openstack.nodes.Server">cloudify.openstack.nodes.Server</a></p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>agent_config</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">cloudify.datatypes.AgentConfig</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">{'port':</span> <span class="pre">5985}</span></code></p>
+<p class="last">(updates the defaults for the agent_config for Windows)</p>
+</dd>
+<dt>use_password</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">True</span></code></p>
+<p class="last">Windows needs use pasword for something or other (TODO)</p>
+</dd>
+<dt>os_family</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">windows</span></code></p>
+<p class="last">(updates the os_family default as a convenience)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.KeyPair">
+<code class="descname">cloudify.openstack.nodes.KeyPair</code><a class="headerlink" href="#cloudify.openstack.nodes.KeyPair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.Root</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>resource_id</dt>
+<dd>the name that will be given to the resource on Openstack (excluding optional prefix). If not provided, a default name will be given instead. If use_external_resource is set to &#8220;true&#8221;, this exact value (without any prefixes applied) will be looked for as either the name or id of an existing keypair to be used.</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>keypair</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">the keypair object as described by Openstack. This parameter can be used to override and pass parameters directly to Nova client. Note that in the case of keypair, the only nested parameter that can be used is &#8220;name&#8221;.</p>
+</dd>
+<dt>private_key_path</dt>
+<dd><p class="first"><strong>required</strong></p>
+<p class="last">the path (on the machine the plugin is running on) to where the private key should be stored. If use_external_resource is set to &#8220;true&#8221;, the existing private key is expected to be at this path.</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean describing whether this resource should be created or rather that it already exists on Openstack and should be used as-is.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.Image">
+<code class="descname">cloudify.openstack.nodes.Image</code><a class="headerlink" href="#cloudify.openstack.nodes.Image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.Root</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>image</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">Required parameters are (container_format, disk_format). Accepted types are available on <a class="reference external" href="http://docs.openstack.org/developer/glance/formats.html">http://docs.openstack.org/developer/glance/formats.html</a> To create an image from the local file its path should be added in data parameter.</p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>image_url</dt>
+<dd>The openstack resource URL for the image.</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.SecurityGroup">
+<code class="descname">cloudify.openstack.nodes.SecurityGroup</code><a class="headerlink" href="#cloudify.openstack.nodes.SecurityGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.SecurityGroup</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>rules</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">[]</span></code></p>
+<p class="last">key-value security_group_rule configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-networking-v2.html#security_groups">http://developer.openstack.org/api-ref-networking-v2.html#security_groups</a></p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>security_group</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value security_group configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-networking-v2-ext.html#createSecGroup">http://developer.openstack.org/api-ref-networking-v2-ext.html#createSecGroup</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+<dt>disable_default_egress_rules</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a flag for removing the default rules which <a class="reference external" href="https://wiki.openstack.org/wiki/Neutron/SecurityGroups#Behavior">https://wiki.openstack.org/wiki/Neutron/SecurityGroups#Behavior</a>. If not set to <cite>true</cite>, these rules will remain, and exist alongside any additional rules passed using the <cite>rules</cite> property.</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+<dt>description</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">string</span></code></p>
+<p class="last">SecurityGroup description.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.Router">
+<code class="descname">cloudify.openstack.nodes.Router</code><a class="headerlink" href="#cloudify.openstack.nodes.Router" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.Router</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>default_to_managers_external_network</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">True</span></code></p>
+<p class="last">A boolean which determines whether to use the Cloudify Manager&#8217;s external network if no other external network was given (whether by a relationship, by the <cite>external_network</cite> property or by the nested <cite>external_gateway_info</cite> key in the <cite>router</cite> property). This is only relevant if the manager&#8217;s external network appears in the Provider-context. Defaults to <cite>true</cite>.</p>
+</dd>
+<dt>router</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value router configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-networking-v2.html#layer3">http://developer.openstack.org/api-ref-networking-v2.html#layer3</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+<dt>external_network</dt>
+<dd>An external network name or ID. If given, the router will use this external network as a gateway.</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.Port">
+<code class="descname">cloudify.openstack.nodes.Port</code><a class="headerlink" href="#cloudify.openstack.nodes.Port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.Port</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>fixed_ip</dt>
+<dd>may be used to request a specific fixed IP for the port. If the IP is unavailable (either already taken or does not belong to a subnet the port is on) an error will be raised.</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+<dt>port</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value port configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-networking-v2.html#ports">http://developer.openstack.org/api-ref-networking-v2.html#ports</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.Network">
+<code class="descname">cloudify.openstack.nodes.Network</code><a class="headerlink" href="#cloudify.openstack.nodes.Network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.Network</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>network</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value network configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-networking-v2.html#networks">http://developer.openstack.org/api-ref-networking-v2.html#networks</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.Subnet">
+<code class="descname">cloudify.openstack.nodes.Subnet</code><a class="headerlink" href="#cloudify.openstack.nodes.Subnet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.Subnet</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>subnet</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value subnet configuration as described at <a class="reference external" href="http://developer.openstack.org/api-ref-networking-v2.html#subnets">http://developer.openstack.org/api-ref-networking-v2.html#subnets</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.FloatingIP">
+<code class="descname">cloudify.openstack.nodes.FloatingIP</code><a class="headerlink" href="#cloudify.openstack.nodes.FloatingIP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.VirtualIP</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>floatingip</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value floatingip configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-networking-v2.html#layer3">http://developer.openstack.org/api-ref-networking-v2.html#layer3</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.Volume">
+<code class="descname">cloudify.openstack.nodes.Volume</code><a class="headerlink" href="#cloudify.openstack.nodes.Volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.Volume</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>boot</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: is this a bootable flag?</p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>device_name</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">auto</span></code></p>
+<p class="last">The device name this volume will be attached to. Default value is <em>auto</em>, which means openstack will auto-assign a device. Note that if you do explicitly set a value, this value may not be the actual device name assigned. Sometimes the device requested will not be available and openstack will assign it to a different device, this is why we recommend using <em>auto</em>.</p>
+</dd>
+<dt>volume</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value volume configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-blockstorage-v1.html#volumes-v1">http://developer.openstack.org/api-ref-blockstorage-v1.html#volumes-v1</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nodes.Project">
+<code class="descname">cloudify.openstack.nodes.Project</code><a class="headerlink" href="#cloudify.openstack.nodes.Project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.Root</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>quota</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">TODO: what is dis</p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>project</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value project configuration.</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+<dt>users</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">[]</span></code></p>
+<dl class="last docutils">
+<dt>List of users assigned to this project in the following format:</dt>
+<dd>{ name: string, roles: [string] }</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="types-common-behaviors">
+<h2>Types&#8217; Common Behaviors<a class="headerlink" href="#types-common-behaviors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="validations">
+<h3>Validations<a class="headerlink" href="#validations" title="Permalink to this headline">¶</a></h3>
+<p>All types offer the same base functionality for the <code class="docutils literal"><span class="pre">cloudify.interfaces.validation.creation</span></code> interface operation:</p>
+<blockquote>
+<div><ul class="simple">
+<li>If it&#8217;s a new resource (<code class="docutils literal"><span class="pre">use_external_resource</span></code> is set to <code class="docutils literal"><span class="pre">false</span></code>), the basic validation is to verify there&#8217;s enough quota to allocate a new resource of the given type.</li>
+<li>When [using an existing resource](#using-existing-resources), the validation ensures the resource indeed exists.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="runtime-properties">
+<h3>Runtime Properties<a class="headerlink" href="#runtime-properties" title="Permalink to this headline">¶</a></h3>
+<p>Node instances of any of the types defined in this plugin get set with the following runtime properties during the <code class="docutils literal"><span class="pre">cloudify.interfaces.lifecycle.create</span></code> operation:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">external_id</span></code> the Openstack ID of the resource</li>
+<li><code class="docutils literal"><span class="pre">external_type</span></code> the Openstack type of the resource</li>
+<li><code class="docutils literal"><span class="pre">external_name</span></code> the Openstack name of the resource</li>
+</ul>
+</div></blockquote>
+<p>The only exceptions are the two <em>floating-ip</em> types - Since floating-ip objects on Openstack don&#8217;t have a name, the <code class="docutils literal"><span class="pre">external_name</span></code> runtime property is replaced with the <code class="docutils literal"><span class="pre">floating_ip_address</span></code> one, which holds the object&#8217;s actual IP address.</p>
+</div>
+<div class="section" id="default-resource-naming-convention">
+<h3>Default Resource Naming Convention<a class="headerlink" href="#default-resource-naming-convention" title="Permalink to this headline">¶</a></h3>
+<p>When creating a new resource (i.e. <code class="docutils literal"><span class="pre">use_external_resource</span></code> is set to <code class="docutils literal"><span class="pre">false</span></code>), its name on Openstack will be the value of its <code class="docutils literal"><span class="pre">resource_id</span></code> property. However, if this value is not provided, the name will default to the following schema:</p>
+<p><code class="docutils literal"><span class="pre">&lt;openstack-resource-type&gt;_&lt;deployment-id&gt;_&lt;node-instance-id&gt;</span></code></p>
+<p>For example, if a server node is defined as so:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">node_templates</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">myserver</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Server</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>Yet without setting the <code class="docutils literal"><span class="pre">resource_id</span></code> property, then the server&#8217;s name on Openstack will be <code class="docutils literal"><span class="pre">server_my-deployment_myserver_XXXXX</span></code> (where the XXXXX is the autogenerated part of the node instance&#8217;s ID).</p>
+</div>
+<div class="section" id="using-existing-resources">
+<h3>Using Existing Resources<a class="headerlink" href="#using-existing-resources" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to use existing resources on Openstack - whether these have been created by a different Cloudify deployment or not via Cloudify at all.</p>
+<p>All Cloudify Openstack types have a property named <code class="docutils literal"><span class="pre">use_external_resource</span></code>, whose default value is <code class="docutils literal"><span class="pre">false</span></code>. When set to <code class="docutils literal"><span class="pre">true</span></code>, the plugin will apply different semantics for each of the operations executed on the relevant node&#8217;s instances. Specifically, in the case of the <code class="docutils literal"><span class="pre">cloudify.interfaces.lifecycle.create</span></code> operation, rather than creating a new resource on Openstack of the given type, the plugin will behave as follows:</p>
+<ol class="arabic simple">
+<li>Try to find an existing resource on Openstack whose name (or IP, in the case of one of the <strong>floating-ip</strong> types) is the value specified for the <code class="docutils literal"><span class="pre">resource_id</span></code> property. If more than one is found, an error is raised.</li>
+<li>If no resource was found, the plugin will use the value of the <code class="docutils literal"><span class="pre">resource_id</span></code> property to look for the resource by ID instead. If a resource still isn&#8217;t found, an error is raised.</li>
+<li>If a single resource was found, the plugin will use that resource, and set the node instance with the appropriate runtime properties according to the resource&#8217;s data.</li>
+</ol>
+<p>The semantics of other operations are affected as well:</p>
+<ul class="simple">
+<li>The <code class="docutils literal"><span class="pre">cloudify.interfaces.lifecycle.start</span></code> operation, where applicable, will only validate that the resource is indeed started, raising an error if it isn&#8217;t.</li>
+<li>The <code class="docutils literal"><span class="pre">cloudify.interfaces.lifecycle.stop</span></code> operation, where applicable, won&#8217;t have any effect.</li>
+<li>The <code class="docutils literal"><span class="pre">cloudify.interfaces.lifecycle.delete</span></code> operation will not actually delete the resource from Openstack (but will clear the runtime properties from the node instance).</li>
+<li>The <code class="docutils literal"><span class="pre">cloudify.interfaces.validation.creation</span></code> operation will verify that a resource with the given name or ID indeed exists, or otherwise print a list of all available resources of the given type.</li>
+<li>The <code class="docutils literal"><span class="pre">cloudify.interfaces.relationship_lifecycle.establish</span></code> operation will behave as normal if the related node is not set with <code class="docutils literal"><span class="pre">use_external_resource</span></code> as <code class="docutils literal"><span class="pre">true</span></code>; However if both nodes have this property set to <code class="docutils literal"><span class="pre">true</span></code>, the operation will only attempt to verify that they&#8217;re indeed &#8220;connected&#8221; on Openstack as well (&#8220;connected&#8221; in this case also refers to a security-group imposed on a server, floating-ip associated with a server, etc.).</li>
+</ul>
+</div>
+<div class="section" id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>As mentioned in the [Relationships section](#relationships), some relationships take effect in non-relationship operations. When <code class="docutils literal"><span class="pre">use_external_resource</span></code> is set to <code class="docutils literal"><span class="pre">true</span></code>, the existence of such connections is validated as well.</li>
+<li>Using an existing resource only makes sense for single-instance nodes.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="relationships">
+<h2>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Not all relationships have built-in types
+(i.e., some types may simply get connected using standard Cloudify relationships such as <code class="docutils literal"><span class="pre">cloudify.relationships.connected_to</span></code>).</p>
+<p>Some relationships take effect in non-relationship operations,
+e.g. a subnet which is connected to a network actually gets connected on subnet&#8217;s creation
+(in the <code class="docutils literal"><span class="pre">cloudify.interfaces.lifecycle.create</span></code> operation)
+and not in a <code class="docutils literal"><span class="pre">cloudify.interfaces.relationship_lifecycle.establish</span></code> operation - this occurs whenever the connection information is required on resource creation.</p>
+</div></blockquote>
+<dl class="rel">
+<dt id="cloudify.openstack.server_connected_to_port">
+<code class="descname">cloudify.openstack.server_connected_to_port</code><a class="headerlink" href="#cloudify.openstack.server_connected_to_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>A relationship for connecting a server to a port. The server will use this relationship to automatically connect to the port upon server creation.</p>
+<p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+<dl class="rel">
+<dt id="cloudify.openstack.port_connected_to_security_group">
+<code class="descname">cloudify.openstack.port_connected_to_security_group</code><a class="headerlink" href="#cloudify.openstack.port_connected_to_security_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>A relationship for a port to a security group.</p>
+<p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+<dl class="rel">
+<dt id="cloudify.openstack.server_connected_to_keypair">
+<code class="descname">cloudify.openstack.server_connected_to_keypair</code><a class="headerlink" href="#cloudify.openstack.server_connected_to_keypair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+<dl class="rel">
+<dt id="cloudify.openstack.port_connected_to_subnet">
+<code class="descname">cloudify.openstack.port_connected_to_subnet</code><a class="headerlink" href="#cloudify.openstack.port_connected_to_subnet" title="Permalink to this definition">¶</a></dt>
+<dd><p>A relationship for connecting a port to a subnet. This is useful when a network has multiple subnets, and a port should belong to a specific subnet on that network. The port will then receive some IP from that given subnet.</p>
+<p>Note that when using this relationship in combination with the port type&#8217;s property <cite>fixed_ip</cite>, the IP given should be on the CIDR of the subnet connected to the port.</p>
+<p><em>Note</em>: This relationship has no operations associated with it; The port will use this relationship to automatically connect to the subnet upon port creation.</p>
+<p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+<dl class="rel">
+<dt id="cloudify.openstack.server_connected_to_security_group">
+<code class="descname">cloudify.openstack.server_connected_to_security_group</code><a class="headerlink" href="#cloudify.openstack.server_connected_to_security_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>A relationship for setting a security group on a server.</p>
+<p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+<dl class="rel">
+<dt id="cloudify.openstack.subnet_connected_to_router">
+<code class="descname">cloudify.openstack.subnet_connected_to_router</code><a class="headerlink" href="#cloudify.openstack.subnet_connected_to_router" title="Permalink to this definition">¶</a></dt>
+<dd><p>A relationship for connecting a subnet to a router.</p>
+<p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+<dl class="rel">
+<dt id="cloudify.openstack.port_connected_to_floating_ip">
+<code class="descname">cloudify.openstack.port_connected_to_floating_ip</code><a class="headerlink" href="#cloudify.openstack.port_connected_to_floating_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>A relationship for associating a floating ip with a port. If that port is later connected to a server, the server will be accessible via the floating IP.</p>
+<p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+<dl class="rel">
+<dt id="cloudify.openstack.server_connected_to_floating_ip">
+<code class="descname">cloudify.openstack.server_connected_to_floating_ip</code><a class="headerlink" href="#cloudify.openstack.server_connected_to_floating_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>A relationship for associating a floating ip with a server.</p>
+<p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+<dl class="rel">
+<dt id="cloudify.openstack.volume_attached_to_server">
+<code class="descname">cloudify.openstack.volume_attached_to_server</code><a class="headerlink" href="#cloudify.openstack.volume_attached_to_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>A relationship for attaching a volume to a server.</p>
+<p>Derived from: cloudify.relationships.connected_to</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="nova-net.html" class="btn btn-neutral float-right" title="Nova-net Support"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="configuration.html" class="btn btn-neutral" title="Openstack Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+  Copyright © 2016 GigaSpaces Technologies Ltd.
+  <br>
+  </p>
+<p>
+Cloudify docs are generated using <A HREF="http://sphinx-doc.org/">Sphinx</A> using a theme provided by <a href="http://readthedocs.org">Read the Docs</a>. 
+</p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+      <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v: sphinx-docs
+          <span class="fa fa-caret-down"></span>
+      </span>
+      <div class="rst-other-versions">
+          <dl>
+              <dt>Branches</dt>
+              <dd><a href="types.html">sphinx-docs</a></dd>
+          </dl>
+      </div>
+  </div>
+  
+  
+</body>
+</html>

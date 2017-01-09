@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+  <title>Examples &mdash; cloudify-openstack-plugin 2.0a1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'2.0a1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="cloudify-openstack-plugin 2.0a1 documentation" href="index.html"/>
+        <link rel="next" title="Tips" href="tips.html"/>
+        <link rel="prev" title="Nova-net Support" href="nova-net.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  <style>
+    .search-reset-start {
+        color: #463E3F;
+        float: right;
+        position: relative;
+        top: -25px;
+        left: -10px;
+        z-index: 10;
+     }
+     .search-reset-start:hover {
+        cursor: pointer;
+        color: #2980B9;
+     }
+     #search-box-id {
+        padding-right: 25px;
+     }
+  </style>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'
+    rel='stylesheet' type='text/css'>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="DocSite-globalNav topNav">
+        <ul>
+            <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+            <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+            <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+        </ul>
+    </div>
+
+  <a class="DocSite-nav" href="http://docs.getcloudify.org/">
+    <img class="DocSiteNav-logo"
+      src="_static/images/logo.png"
+      alt="Cloudify Logo">
+    <div class="DocSiteNav-title">
+      Cloudify Documentation
+    </div>
+  </a>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+
+      <div style="background-color:#41b9d2;height=80px;margin:'auto auto auto auto'">
+        <a class="DocSiteProduct-header DocSiteProduct-header--core"
+           href="index.html">
+          <div class="DocSiteProduct-productName">
+            <div class="DocSiteProduct-logoText">
+                cloudify-openstack-plugin
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div id="menu-id" class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Openstack Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#node-types">Node Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#types-common-behaviors">Types&#8217; Common Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#relationships">Relationships</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nova-net.html">Nova-net Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nova-net.html#nova-net-node-types">Nova-net Node Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-i">Example I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-ii">Example II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-iii">Example III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-iv">Example IV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html#misc">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+</ul>
+
+        
+
+
+    <div class="DocSite-sideNav topNav">
+       <ul class="">
+       <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+       <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+       <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+       <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+       </ul>
+     </div>
+
+    
+    <div id="plugin-links">
+        <h3>Official Plugins</h3>
+        <ul>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../script/">
+                script</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../aws/">
+                aws</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../fabric/">
+                fabric</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vsphere/">
+                vsphere</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../openstack/">
+                openstack</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../docker/">
+                docker</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../diamond/">
+                diamond</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../host-pool/">
+                host-pool</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../psutil/">
+                psutil</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../gcp/">
+                gcp</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../ldap/">
+                ldap</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vcloud/">
+                vcloud</a>
+            </li>
+        
+        </ul>
+    </div>
+    
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">cloudify-openstack-plugin</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Examples</a></li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="example-i">
+<h2>Example I<a class="headerlink" href="#example-i" title="Permalink to this headline">¶</a></h2>
+<p>This example will show how to use most of the types in this plugin,
+as well as how to make the relationships between them.</p>
+<p>We&#8217;ll see how to create a server with a security group set on it and a floating_ip associated to it,
+on a subnet in a network.</p>
+<p>The following is an excerpt from the blueprint&#8217;s <cite>blueprint</cite>.`nodes` section:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">my_floating_ip</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.FloatingIP</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">floating_network_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Ext-Net</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_network</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Network</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_network_openstack_name</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_subnet</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Subnet</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_subnet_openstack_name</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cidr</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.3.0/24</span>
+            <span class="l l-Scalar l-Scalar-Plain">ip_version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.validation</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">creation</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cidr</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.3.0/24</span>
+            <span class="l l-Scalar l-Scalar-Plain">ip_version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+  <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_network</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.contained_in</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_security_group</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.SecurityGroup</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_security_group_openstack_name</span>
+    <span class="l l-Scalar l-Scalar-Plain">rules</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">remote_ip_prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+        <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Server</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_server_openstack_name</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8672f4c6-e33d-46f5-b6d8-ebbeba12fa02</span>
+            <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">101</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.validation</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">creation</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8672f4c6-e33d-46f5-b6d8-ebbeba12fa02</span>
+            <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">101</span>
+  <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_network</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.connected_to</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_subnet</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.depends_on</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_floating_ip</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.server_connected_to_floating_ip</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_security_group</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.server_connected_to_security_group</span>
+</pre></div>
+</div>
+<div class="section" id="node-by-node-explanation">
+<h3>Node by node explanation<a class="headerlink" href="#node-by-node-explanation" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Creates a floating IP, whose node name is <code class="docutils literal"><span class="pre">my_floating_ip</span></code>, and whose floating_network_name is <code class="docutils literal"><span class="pre">Ext-Net</span></code> (This value represents the name of the external network).</li>
+<li>Creates a network, whose node name is <code class="docutils literal"><span class="pre">my_network</span></code>, and whose name on Openstack is <code class="docutils literal"><span class="pre">my_network_openstack_name</span></code>.</li>
+<li>Creates a subnet, whose node name is <code class="docutils literal"><span class="pre">my_subnet</span></code>, and whose name on Openstack is <code class="docutils literal"><span class="pre">my_subnet_openstack_name</span></code>. The subnet&#8217;s address range is defined to be 1.2.3.0 - 1.2.3.255 using the <code class="docutils literal"><span class="pre">cidr</span></code> parameter, and the subnet&#8217;s IP version is set to version 4. The subnet will be set on the <code class="docutils literal"><span class="pre">my_network_openstack_name</span></code> network because of the relationship to the <code class="docutils literal"><span class="pre">my_network</span></code> node.</li>
+<li>Creates a security_group, whose node name is <code class="docutils literal"><span class="pre">my_security_group</span></code>, and whose name on Openstack is <code class="docutils literal"><span class="pre">my_security_group_openstack_Name</span></code>. The security group is set with a single rule, which allows all traffic (since we use the address range <code class="docutils literal"><span class="pre">0.0.0.0/0</span></code>) to port <code class="docutils literal"><span class="pre">8080</span></code> (default direction is <em>ingress</em>).</li>
+<li>Creates a server, whose node name is <code class="docutils literal"><span class="pre">my_server</span></code>, and whose name on openstack is <code class="docutils literal"><span class="pre">my_server_openstack_name</span></code>. The server is set with an image and flavor IDs. The server is set with multiple relationships:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>A relationship to the <code class="docutils literal"><span class="pre">my_network</span></code> node: Through this relationship,
+the server will be automatically placed on the <code class="docutils literal"><span class="pre">my_network_openstack_name</span></code> network.</li>
+<li>A relationship to the <code class="docutils literal"><span class="pre">my_subnet</span></code> node:
+This relationship is strictly for ensuring the order of creation is correct,
+as the server requires the <code class="docutils literal"><span class="pre">my_subnet_openstack_name</span></code> subnet to exist before it can be created on it.</li>
+<li>A relationship to the <code class="docutils literal"><span class="pre">my_floating_ip</span></code> node:
+This designated relationship type will take care of associating the server with the floating IP represented by the <code class="docutils literal"><span class="pre">my_floating_ip</span></code> node.</li>
+<li>A relationship with the <code class="docutils literal"><span class="pre">my_security_group</span></code> node:
+This relationship will take care of setting the server up with the security group represented by the <code class="docutils literal"><span class="pre">my_security_group</span></code> node.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="example-ii">
+<h2>Example II<a class="headerlink" href="#example-ii" title="Permalink to this headline">¶</a></h2>
+<p>This example will show how to use the <code class="docutils literal"><span class="pre">router</span></code> and <code class="docutils literal"><span class="pre">port</span></code> types, as well as some of the relationships that were missing from Example I.</p>
+<p>We&#8217;ll see how to create a server connected to a port, where the port is set on a subnet in a network, and has a security group set on it. Finally, we&#8217;ll see how this subnet connects to a router and from there to the external network.</p>
+<p>The following is an excerpt from the blueprint&#8217;s <code class="docutils literal"><span class="pre">blueprint</span></code>.``node_templates`` section:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">my_network</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Network</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_network_openstack_name</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_security_group</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.SecurityGroup</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_security_group_openstack_name</span>
+    <span class="l l-Scalar l-Scalar-Plain">rules</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">remote_ip_prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+        <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_subnet</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Subnet</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_subnet_openstack_name</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cidr</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.3.0/24</span>
+            <span class="l l-Scalar l-Scalar-Plain">ip_version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.validation</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">creation</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cidr</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.3.0/24</span>
+            <span class="l l-Scalar l-Scalar-Plain">ip_version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+  <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_network</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.contained_in</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_router</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.subnet_connected_to_router</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_port</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Port</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_port_openstack_name</span>
+  <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_network</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.contained_in</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_subnet</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.relationships.depends_on</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_security_group</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.port_connected_to_security_group</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_router</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Router</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_router_openstack_Name</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">my_server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Server</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify_agent</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8672f4c6-e33d-46f5-b6d8-ebbeba12fa02</span>
+            <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">101</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.validation</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">creation</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8672f4c6-e33d-46f5-b6d8-ebbeba12fa02</span>
+            <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">101</span>
+  <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_port</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.server_connected_to_port</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h3>Node by node explanation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Creates a network. See Example I for more information.</li>
+<li>Creates a security group. See Example I for more information.</li>
+<li>Creates a subnet. This is again similar to what we&#8217;ve done in Example I. The difference here is that the subnet has an extra relationship set towards a router.</li>
+<li>Creates a port, whose node name is <code class="docutils literal"><span class="pre">my_port</span></code>, and whose name on Openstack is <code class="docutils literal"><span class="pre">my_port_openstack_name</span></code>. The port is set with multiple relationships:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>A relationship to the <code class="docutils literal"><span class="pre">my_network</span></code> node: Through this relationship, the port will be automatically placed on the <code class="docutils literal"><span class="pre">my_network_openstack_name</span></code> network.</li>
+<li>A relationship to the <code class="docutils literal"><span class="pre">my_subnet</span></code> node: This relationship is strictly for ensuring the order of creation is correct, as the port requires the <code class="docutils literal"><span class="pre">my_subnet_openstack_name</span></code> subnet to exist before it can be created on it.</li>
+<li>A relationship to the <code class="docutils literal"><span class="pre">my_security_group</span></code> node: This designated relationship type will take care of setting the <code class="docutils literal"><span class="pre">my_security_group_openstack_name</span></code> security group on the port.</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Creates a router, whose node name is <code class="docutils literal"><span class="pre">my_router</span></code>, and whose name on Openstack is <code class="docutils literal"><span class="pre">my_router_openstack_name</span></code>. The router will automatically have an interface in the external network.</li>
+<li>Creates a server, whose node name is <code class="docutils literal"><span class="pre">my_server</span></code>, and whose name on Openstack is <strong>the node&#8217;s ID</strong> (since no <code class="docutils literal"><span class="pre">name</span></code> parameter was supplied under the <code class="docutils literal"><span class="pre">server</span></code> property). The server is set with an image and flavor IDs. It also overrides the <code class="docutils literal"><span class="pre">cloudify_agent</span></code> property of its parent type to set the username that will be used to connect to the server for installing the Cloudify agent on it. Finally, it is set with a relationship to the <code class="docutils literal"><span class="pre">my_port</span></code> node: This designated relationship type will take care of connecting the server to <code class="docutils literal"><span class="pre">my_port_openstack_name</span></code>.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="example-iii">
+<h2>Example III<a class="headerlink" href="#example-iii" title="Permalink to this headline">¶</a></h2>
+<p>This example will show how to use the <code class="docutils literal"><span class="pre">volume</span></code> type, as well as <code class="docutils literal"><span class="pre">volume_attached_to_server</span></code> relationship.</p>
+<p>The following is an excerpt from the blueprint&#8217;s <code class="docutils literal"><span class="pre">blueprint</span></code>.``node_templates`` section:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">my_server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Server</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify_agent</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8672f4c6-e33d-46f5-b6d8-ebbeba12fa02</span>
+            <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">101</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.validation</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">creation</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8672f4c6-e33d-46f5-b6d8-ebbeba12fa02</span>
+            <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">101</span>
+
+<span class="l l-Scalar l-Scalar-Plain">my_volume</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.Volume</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">resource_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_openstack_volume_name</span>
+    <span class="l l-Scalar l-Scalar-Plain">device_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/dev/vdb</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_server</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.volume_attached_to_server</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h3>Node by node explanation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Creates a server, with name <code class="docutils literal"><span class="pre">my_server</span></code>, and with name on Openstack <strong>the node&#8217;s ID</strong> (since no <code class="docutils literal"><span class="pre">name</span></code> parameter was supplied under the <code class="docutils literal"><span class="pre">server</span></code> property). The server is set with an image and flavor IDs.</li>
+<li>Creates a volume. It is set with a relationship to the <code class="docutils literal"><span class="pre">my_server</span></code> node: This designated relationship type will take care of attaching the volume to Openstack server node.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="example-iv">
+<h2>Example IV<a class="headerlink" href="#example-iv" title="Permalink to this headline">¶</a></h2>
+<p>This example will show how to use a Windows server with a Cloudify agent on it.</p>
+<p>The following is an excerpt from the blueprint&#8217;s <code class="docutils literal"><span class="pre">blueprint</span></code>.``node_templates`` section:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">my_keypair</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.KeyPair</span>
+  <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">private_key_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/windows-test.pem</span>
+
+<span class="l l-Scalar l-Scalar-Plain">my_server</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.nodes.WindowsServer</span>
+  <span class="l l-Scalar l-Scalar-Plain">relationships</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudify.openstack.server_connected_to_keypair</span>
+      <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">keypair</span>
+  <span class="l l-Scalar l-Scalar-Plain">interfaces</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.lifecycle</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+              <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8672f4c6-e33d-46f5-b6d8-ebbeba12fa02</span>
+              <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">101</span>
+              <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my-server</span>
+              <span class="l l-Scalar l-Scalar-Plain">userdata</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+                <span class="no">#ps1_sysnative</span>
+                <span class="no">winrm quickconfig -q</span>
+                <span class="no">winrm set winrm/config/winrs &#39;@{MaxMemoryPerShellMB=&quot;300&quot;}&#39;</span>
+                <span class="no">winrm set winrm/config &#39;@{MaxTimeoutms=&quot;1800000&quot;}&#39;</span>
+                <span class="no">winrm set winrm/config/service &#39;@{AllowUnencrypted=&quot;true&quot;}&#39;</span>
+                <span class="no">winrm set winrm/config/service/auth &#39;@{Basic=&quot;true&quot;}&#39;</span>
+                <span class="no">&amp;netsh advfirewall firewall add rule name=&quot;WinRM 5985&quot; protocol=TCP dir=in localport=5985 action=allow</span>
+                <span class="no">&amp;netsh advfirewall firewall add rule name=&quot;WinRM 5986&quot; protocol=TCP dir=in localport=5986 action=allow</span>
+
+                <span class="no">msiexec /i https://www.python.org/ftp/python/2.7.6/python-2.7.6.msi TARGETDIR=C:\Python27 ALLUSERS=1 /qn</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.validation</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">creation</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span>
+              <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8672f4c6-e33d-46f5-b6d8-ebbeba12fa02</span>
+              <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">101</span>
+              <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my-server</span>
+              <span class="l l-Scalar l-Scalar-Plain">userdata</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+                <span class="no">#ps1_sysnative</span>
+                <span class="no">winrm quickconfig -q</span>
+                <span class="no">winrm set winrm/config/winrs &#39;@{MaxMemoryPerShellMB=&quot;300&quot;}&#39;</span>
+                <span class="no">winrm set winrm/config &#39;@{MaxTimeoutms=&quot;1800000&quot;}&#39;</span>
+                <span class="no">winrm set winrm/config/service &#39;@{AllowUnencrypted=&quot;true&quot;}&#39;</span>
+                <span class="no">winrm set winrm/config/service/auth &#39;@{Basic=&quot;true&quot;}&#39;</span>
+                <span class="no">&amp;netsh advfirewall firewall add rule name=&quot;WinRM 5985&quot; protocol=TCP dir=in localport=5985 action=allow</span>
+                <span class="no">&amp;netsh advfirewall firewall add rule name=&quot;WinRM 5986&quot; protocol=TCP dir=in localport=5986 action=allow</span>
+
+                <span class="no">msiexec /i https://www.python.org/ftp/python/2.7.6/python-2.7.6.msi TARGETDIR=C:\Python27 ALLUSERS=1 /qn</span>
+    <span class="l l-Scalar l-Scalar-Plain">cloudify.interfaces.worker_installer</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">install</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">inputs</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">cloudify_agent</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Admin</span>
+            <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_attribute</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">SELF</span><span class="p p-Indicator">,</span> <span class="nv">password</span><span class="p p-Indicator">]</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>Node by node explanation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Creates a keypair. the private key will be saved under <code class="docutils literal"><span class="pre">/tmp/windows-test.pem</span></code>.</li>
+<li>Creates a Windows server:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>It is set with a relationship to the <code class="docutils literal"><span class="pre">my_keypair</span></code> node, which will make the server use the it as a public key for authentication, and also use this public key to encrypt its password before posting it to the Openstack metadata service.</li>
+<li>The worker-installer interface operations are given values for the user and password for the <code class="docutils literal"><span class="pre">cloudify_agent</span></code> input - the password uses the [get_attribute]({{&lt; relref &#8220;blueprints/spec-intrinsic-functions.md#get-attribute&#8221; &gt;}}) feature to retrieve the decrypted password from the Server&#8217;s runtime properties (Note that in this example, only the <code class="docutils literal"><span class="pre">install</span></code> operation was given with this input, but all of the worker installer operations as well as the plugin installer operations should be given with it).</li>
+<li>We define custom userdata which configures WinRM and installs Python on the machine (Windows Server 2012 in this example) once it&#8217;s up. This is required for the Cloudify agent to be installed on the machine.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="tips.html" class="btn btn-neutral float-right" title="Tips"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="nova-net.html" class="btn btn-neutral" title="Nova-net Support"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+  Copyright © 2016 GigaSpaces Technologies Ltd.
+  <br>
+  </p>
+<p>
+Cloudify docs are generated using <A HREF="http://sphinx-doc.org/">Sphinx</A> using a theme provided by <a href="http://readthedocs.org">Read the Docs</a>. 
+</p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+      <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v: sphinx-docs
+          <span class="fa fa-caret-down"></span>
+      </span>
+      <div class="rst-other-versions">
+          <dl>
+              <dt>Branches</dt>
+              <dd><a href="examples.html">sphinx-docs</a></dd>
+          </dl>
+      </div>
+  </div>
+  
+  
+</body>
+</html>

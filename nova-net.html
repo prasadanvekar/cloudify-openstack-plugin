@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+  <title>Nova-net Support &mdash; cloudify-openstack-plugin 2.0a1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'2.0a1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="cloudify-openstack-plugin 2.0a1 documentation" href="index.html"/>
+        <link rel="next" title="Examples" href="examples.html"/>
+        <link rel="prev" title="Types" href="types.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  <style>
+    .search-reset-start {
+        color: #463E3F;
+        float: right;
+        position: relative;
+        top: -25px;
+        left: -10px;
+        z-index: 10;
+     }
+     .search-reset-start:hover {
+        cursor: pointer;
+        color: #2980B9;
+     }
+     #search-box-id {
+        padding-right: 25px;
+     }
+  </style>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'
+    rel='stylesheet' type='text/css'>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="DocSite-globalNav topNav">
+        <ul>
+            <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+            <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+            <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+        </ul>
+    </div>
+
+  <a class="DocSite-nav" href="http://docs.getcloudify.org/">
+    <img class="DocSiteNav-logo"
+      src="_static/images/logo.png"
+      alt="Cloudify Logo">
+    <div class="DocSiteNav-title">
+      Cloudify Documentation
+    </div>
+  </a>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+
+      <div style="background-color:#41b9d2;height=80px;margin:'auto auto auto auto'">
+        <a class="DocSiteProduct-header DocSiteProduct-header--core"
+           href="index.html">
+          <div class="DocSiteProduct-productName">
+            <div class="DocSiteProduct-logoText">
+                cloudify-openstack-plugin
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div id="menu-id" class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Openstack Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#node-types">Node Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#types-common-behaviors">Types&#8217; Common Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#relationships">Relationships</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Nova-net Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nova-net-node-types">Nova-net Node Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-i">Example I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-ii">Example II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iii">Example III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#example-iv">Example IV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html#misc">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+</ul>
+
+        
+
+
+    <div class="DocSite-sideNav topNav">
+       <ul class="">
+       <li><a href="http://getcloudify.org/cloudifysourcetv.html" target="_blank">TUTORIALS</a></li>
+       <li><a href="http://getcloudify.org/participate.htm" target="_blank">TRAINING</a></li>
+       <li><a href="https://groups.google.com/forum/#!forum/cloudify-users" target="_blank">MAILING LIST</a></li>
+       <li><a href="http://getcloudify.org/blog/" target="_blank">BLOG</a></li>
+       </ul>
+     </div>
+
+    
+    <div id="plugin-links">
+        <h3>Official Plugins</h3>
+        <ul>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../script/">
+                script</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../aws/">
+                aws</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../fabric/">
+                fabric</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vsphere/">
+                vsphere</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../openstack/">
+                openstack</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../docker/">
+                docker</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../diamond/">
+                diamond</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../host-pool/">
+                host-pool</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../psutil/">
+                psutil</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../gcp/">
+                gcp</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../ldap/">
+                ldap</a>
+            </li>
+        
+            <li class="toctree-l1">
+                <a class="reference internal" href="../vcloud/">
+                vcloud</a>
+            </li>
+        
+        </ul>
+    </div>
+    
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">cloudify-openstack-plugin</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Nova-net Support</a></li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="nova-net-support">
+<h1>Nova-net Support<a class="headerlink" href="#nova-net-support" title="Permalink to this headline">¶</a></h1>
+<p>The Openstack plugin includes support for Nova-net mode -
+i.e. an Openstack installation which does not have the Networking API
+(Neutron service).</p>
+<p>In such an environment, there is but a single preconfigured private network,
+which all servers make use of automatically.
+There are no subnets, networks, routers or ports.
+Since these resource types don&#8217;t exist,
+the plugin&#8217;s equivalent types aren&#8217;t valid to use in such an environment.</p>
+<p>There are, however, some resource types whose API is available via both the Nova and Neutron services - These had originally been on the Nova service,
+and later were moved and got extended implementation in the Neutron one,
+but were also kept in the Nova service for backward compatibility.</p>
+<p>For these resource types, the Openstack plugin defines two separate types - one in the plugin&#8217;s standard types namespace (<code class="docutils literal"><span class="pre">cloudify.openstack.nodes.XXX</span></code>),
+which uses the newer and extended API via the Neutron service;
+and Another in a special namespace (<code class="docutils literal"><span class="pre">cloudify.openstack.nova_net.nodes.XXX</span></code>),
+which uses the older API via the Nova service.
+This is why you may notice two separate types defined for [Floating](#cloudifyopenstacknodesfloatingip) [IP](#cloudifyopenstacknovanetnodesfloatingip),
+as well as for [Security](#cloudifyopenstacknodessecuritygroup) [Group](#cloudifyopenstacknovanetnodessecuritygroup).</p>
+<p>To summarize, ensure that when working in a Nova-net Openstack environment,
+Neutron types aren&#8217;t used - these include all types whose resources&#8217; APIs are natively available only via the Network API,
+as well as the types which are in the <code class="docutils literal"><span class="pre">cloudify.openstack.nova_net.Nodes</span></code> namespace.</p>
+<p>On the opposite side, when using an Openstack environment which supports Neutron,
+it&#8217;s recommended to use the Neutron-versions of the relevant types
+(i.e. avoid any types defined under the
+<code class="docutils literal"><span class="pre">cloudify.openstack.nova_net.Nodes</span></code> namespace),
+as they offer more advanced capabilities.
+However, it&#8217;s important to mention that this is not required,
+and using the Nova-versions of some types in a Neutron-enabled environment is possible and will work as well.</p>
+<div class="section" id="nova-net-node-types">
+<h2>Nova-net Node Types<a class="headerlink" href="#nova-net-node-types" title="Permalink to this headline">¶</a></h2>
+<dl class="node">
+<dt id="cloudify.openstack.nova_net.nodes.FloatingIP">
+<code class="descname">cloudify.openstack.nova_net.nodes.FloatingIP</code><a class="headerlink" href="#cloudify.openstack.nova_net.nodes.FloatingIP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.VirtualIP</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>floatingip</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value floatingip configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-compute-v2-ext.html#ext-os-floating-ips">http://developer.openstack.org/api-ref-compute-v2-ext.html#ext-os-floating-ips</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="node">
+<dt id="cloudify.openstack.nova_net.nodes.SecurityGroup">
+<code class="descname">cloudify.openstack.nova_net.nodes.SecurityGroup</code><a class="headerlink" href="#cloudify.openstack.nova_net.nodes.SecurityGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derived from: cloudify.nodes.SecurityGroup</p>
+<p class="rubric">Properties:</p>
+<dl class="docutils">
+<dt>openstack_config</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">endpoints and authentication configuration for Openstack. Expected to contain the following nested fields: username, password, tenant_name, auth_url, region.</p>
+</dd>
+<dt>resource_id</dt>
+<dd>name to give to the new resource or the name or ID of an existing resource when the <code class="docutils literal"><span class="pre">use_external_resource</span></code> property is set to <code class="docutils literal"><span class="pre">true</span></code> (see the using existing resources section). Defaults to &#8216;&#8217; (empty string).</dd>
+<dt>rules</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">[]</span></code></p>
+<p class="last">key-value security group rule as described in <a class="reference external" href="http://developer.openstack.org/api-ref-compute-v2-ext.html#ext-os-security-group-default-rules">http://developer.openstack.org/api-ref-compute-v2-ext.html#ext-os-security-group-default-rules</a>.</p>
+</dd>
+<dt>create_if_missing</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">TODO: CREATE. THIS IS MISSING</p>
+</dd>
+<dt>security_group</dt>
+<dd><p class="first"><strong>default:</strong> <code class="docutils literal"><span class="pre">{}</span></code></p>
+<p class="last">key-value security_group configuration as described in <a class="reference external" href="http://developer.openstack.org/api-ref-compute-v2-ext.html#ext-os-security-groups">http://developer.openstack.org/api-ref-compute-v2-ext.html#ext-os-security-groups</a>. (<strong>DEPRECATED - Use the `args` input in create operation instead</strong>)</p>
+</dd>
+<dt>use_external_resource</dt>
+<dd><p class="first"><strong>type:</strong> <code class="xref cfy cfy-datatype docutils literal"><span class="pre">boolean</span></code> <strong>default:</strong> <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">a boolean for setting whether to create the resource or use an existing one. See the using existing resources section.</p>
+</dd>
+<dt>description</dt>
+<dd><p class="first"><strong>required</strong></p>
+<p class="last">security group description</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="types.html" class="btn btn-neutral" title="Types"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+  Copyright © 2016 GigaSpaces Technologies Ltd.
+  <br>
+  </p>
+<p>
+Cloudify docs are generated using <A HREF="http://sphinx-doc.org/">Sphinx</A> using a theme provided by <a href="http://readthedocs.org">Read the Docs</a>. 
+</p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+      <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v: sphinx-docs
+          <span class="fa fa-caret-down"></span>
+      </span>
+      <div class="rst-other-versions">
+          <dl>
+              <dt>Branches</dt>
+              <dd><a href="sphinx-docs/nova-net.html">sphinx-docs</a></dd>
+          </dl>
+      </div>
+  </div>
+  
+  
+</body>
+</html>
