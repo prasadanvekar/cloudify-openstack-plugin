@@ -470,6 +470,39 @@ def stop(nova_client, **kwargs):
 
 @operation
 @with_nova_client
+def backup(nova_client, **kwargs):
+    """
+    Create server backup.
+    """
+    server = get_server_by_context(nova_client)
+
+    ctx.logger.info('Server state {}'.format(repr(server.status)))
+
+
+@operation
+@with_nova_client
+def restore(nova_client, **kwargs):
+    """
+    Restore server from backup.
+    """
+    server = get_server_by_context(nova_client)
+
+    ctx.logger.info('Server state {}'.format(repr(server.status)))
+
+
+@operation
+@with_nova_client
+def remove_backup(nova_client, **kwargs):
+    """
+    Remove backup for server.
+    """
+    server = get_server_by_context(nova_client)
+
+    ctx.logger.info('Server state {}'.format(repr(server.status)))
+
+
+@operation
+@with_nova_client
 def delete(nova_client, **kwargs):
     if not is_external_resource(ctx):
         ctx.logger.info('deleting server')

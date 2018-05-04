@@ -241,6 +241,15 @@ node_types:
           inputs:
             openstack_config:
               default: {}
+        backup:
+            implementation: openstack.nova_plugin.server.backup
+            inputs: {}
+        restore:
+            implementation: openstack.nova_plugin.server.restore
+            inputs: {}
+        remove_backup:
+            implementation: openstack.nova_plugin.server.remove_backup
+            inputs: {}
       cloudify.interfaces.validation:
         creation:
           implementation: openstack.nova_plugin.server.creation_validation
