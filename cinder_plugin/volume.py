@@ -114,6 +114,24 @@ def get_attachment(cinder_client, volume_id, server_id):
             return attachment
 
 
+@with_cinder_client
+def snapshot_create(cinder_client, **kwargs):
+    volume_id = ctx.instance.runtime_properties[OPENSTACK_ID_PROPERTY]
+    ctx.logger.info("Snapshot create {} in {}", volume_id, kwargs)
+
+
+@with_cinder_client
+def snapshot_apply(cinder_client, **kwargs):
+    volume_id = ctx.instance.runtime_properties[OPENSTACK_ID_PROPERTY]
+    ctx.logger.info("Snapshot apply {} in {}", volume_id, kwargs)
+
+
+@with_cinder_client
+def snapshot_delete(cinder_client, **kwargs):
+    volume_id = ctx.instance.runtime_properties[OPENSTACK_ID_PROPERTY]
+    ctx.logger.info("Snapshot delete {} in {}", volume_id, kwargs)
+
+
 @operation
 @with_cinder_client
 def creation_validation(cinder_client, **kwargs):

@@ -833,6 +833,17 @@ node_types:
           inputs:
             openstack_config:
               default: {}
+      # backups related section
+      cloudify.interfaces.snapshot:
+        create:
+          implementation: openstack.cinder_plugin.volume.snapshot_create
+          inputs: {}
+        apply:
+          implementation: openstack.cinder_plugin.volume.snapshot_apply
+          inputs: {}
+        delete:
+          implementation: openstack.cinder_plugin.volume.snapshot_delete
+          inputs: {}
       cloudify.interfaces.validation:
         creation:
           implementation: openstack.cinder_plugin.volume.creation_validation
