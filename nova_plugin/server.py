@@ -476,40 +476,19 @@ def snapshot_create(nova_client, **kwargs):
     """
     server = get_server_by_context(nova_client)
 
-    ctx.logger.info('Server state {}'.format(repr(server.status)))
+    ctx.logger.info("Create snapshot for {}".format(server.human_id))
 
-
-@operation
-@with_nova_client
-def snapshot_apply(nova_client, **kwargs):
-    """
-    Restore server from backup.
-    """
-    server = get_server_by_context(nova_client)
-
-    ctx.logger.info('Server state {}'.format(repr(server.status)))
-
-
-@operation
-@with_nova_client
-def snapshot_delete(nova_client, **kwargs):
-    """
-    Remove backup for server.
-    """
-    server = get_server_by_context(nova_client)
-
-    ctx.logger.info('Server state {}'.format(repr(server.status)))
-
-
-@operation
-@with_nova_client
-def perfomance(nova_client, **kwargs):
-    """
-    Perfomance metrics.
-    """
-    server = get_server_by_context(nova_client)
-
-    ctx.logger.info('Server state {}'.format(repr(server.status)))
+    snapshot_name = "vm-{}".format(kwargs["snapshot_name"])
+    snapshot_rotation = int(kwargs["snapshot_rotation"])
+    if snapshot_rotation > 0:
+        server.backup(snapshot_name, kwargs["snapshot_type"],
+                      snapshot_rotation)
+        ctx.logger.info("Server backup {} creation started"
+                        .format(repr(snapshot_name)))
+    else:
+        server.create_image(snapshot_name)
+        ctx.logger.info("Server snapshot {} creation started"
+                        .format(repr(snapshot_name)))
 
 
 @operation

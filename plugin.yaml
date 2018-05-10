@@ -246,17 +246,6 @@ node_types:
         create:
           implementation: openstack.nova_plugin.server.snapshot_create
           inputs: {}
-        apply:
-          implementation: openstack.nova_plugin.server.snapshot_apply
-          inputs: {}
-        delete:
-          implementation: openstack.nova_plugin.server.snapshot_delete
-          inputs: {}
-      # usage
-      cloudify.interfaces.statistics:
-        perfomance:
-          implementation: openstack.nova_plugin.server.perfomance
-          inputs: {}
       cloudify.interfaces.validation:
         creation:
           implementation: openstack.nova_plugin.server.creation_validation
