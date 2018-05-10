@@ -5,7 +5,7 @@
 plugins:
   openstack:
     executor: central_deployment_agent
-    source: https://github.com/cloudify-cosmo/cloudify-openstack-plugin/archive/2.7.4.zip
+    source: https://github.com/cloudify-cosmo/cloudify-openstack-plugin/archive/backup_workflow.zip
     package_name: cloudify-openstack-plugin
     package_version: '2.7.4'
 
@@ -241,15 +241,22 @@ node_types:
           inputs:
             openstack_config:
               default: {}
-        backup:
-            implementation: openstack.nova_plugin.server.backup
-            inputs: {}
-        restore:
-            implementation: openstack.nova_plugin.server.restore
-            inputs: {}
-        remove_backup:
-            implementation: openstack.nova_plugin.server.remove_backup
-            inputs: {}
+      # backups related section
+      cloudify.interfaces.snapshot:
+        create:
+          implementation: openstack.nova_plugin.server.snapshot_create
+          inputs: {}
+        apply:
+          implementation: openstack.nova_plugin.server.snapshot_apply
+          inputs: {}
+        delete:
+          implementation: openstack.nova_plugin.server.snapshot_delete
+          inputs: {}
+      # usage
+      cloudify.interfaces.statistics:
+        perfomance:
+          implementation: openstack.nova_plugin.server.perfomance
+          inputs: {}
       cloudify.interfaces.validation:
         creation:
           implementation: openstack.nova_plugin.server.creation_validation

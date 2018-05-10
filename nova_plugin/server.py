@@ -470,7 +470,7 @@ def stop(nova_client, **kwargs):
 
 @operation
 @with_nova_client
-def backup(nova_client, **kwargs):
+def snapshot_create(nova_client, **kwargs):
     """
     Create server backup.
     """
@@ -481,7 +481,7 @@ def backup(nova_client, **kwargs):
 
 @operation
 @with_nova_client
-def restore(nova_client, **kwargs):
+def snapshot_apply(nova_client, **kwargs):
     """
     Restore server from backup.
     """
@@ -492,9 +492,20 @@ def restore(nova_client, **kwargs):
 
 @operation
 @with_nova_client
-def remove_backup(nova_client, **kwargs):
+def snapshot_delete(nova_client, **kwargs):
     """
     Remove backup for server.
+    """
+    server = get_server_by_context(nova_client)
+
+    ctx.logger.info('Server state {}'.format(repr(server.status)))
+
+
+@operation
+@with_nova_client
+def perfomance(nova_client, **kwargs):
+    """
+    Perfomance metrics.
     """
     server = get_server_by_context(nova_client)
 
