@@ -75,14 +75,14 @@ KEY_LOGGERS = 'loggers'
 DEFAULT_LOGGING_CONFIG = {
     KEY_USE_CFY_LOGGER: True,
     KEY_GROUPS: {
-        'nova': logging.DEBUG,
-        'neutron': logging.DEBUG,
-        'cinder': logging.DEBUG,
-        'keystone': logging.DEBUG,
-        'glance': logging.DEBUG
+        'nova': logging.INFO,
+        'neutron': logging.INFO,
+        'cinder': logging.INFO,
+        'keystone': logging.INFO,
+        'glance': logging.INFO
     },
     KEY_LOGGERS: {
-        'keystoneauth.session': logging.DEBUG
+        'keystoneauth.session': logging.INFO
     }
 }
 
