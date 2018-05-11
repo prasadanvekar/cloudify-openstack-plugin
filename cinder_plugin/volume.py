@@ -175,7 +175,19 @@ def snapshot_apply(cinder_client, **kwargs):
 
     snapshot_incremental = kwargs["snapshot_incremental"]
     if not snapshot_incremental:
-        ctx.logger.error("Apply backup is unsuported")
+        search_opts = {
+            'volume_id': volume_id,
+            'name': backup_name
+        }
+
+        backups = cinder_client.backups.list(
+            search_opts=search_opts)
+
+        if len(backups) == 1:
+            cinder_client.restores.restore(backups[0].id, volume_id)
+        else:
+            raise cfy_exc.NonRecoverableError("No such {} backup."
+                                              .format(backup_name))
     else:
         ctx.logger.error("Apply snapshot is unsuported")
 
@@ -198,7 +210,7 @@ def snapshot_delete(cinder_client, **kwargs):
         backups = cinder_client.backups.list(
             search_opts=search_opts)
         for backup in backups:
-            ctx.logger.info("Remove snapshot: {}".format(backup.id))
+            ctx.logger.info("Remove backup: {}".format(backup.id))
             backup.delete()
 
         # check that we deleted any backups with such name
