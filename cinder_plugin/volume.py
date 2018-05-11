@@ -189,7 +189,34 @@ def snapshot_delete(cinder_client, **kwargs):
 
     snapshot_incremental = kwargs["snapshot_incremental"]
     if not snapshot_incremental:
-        ctx.logger.error("Remove backup unsuported")
+        # search snaphot for delete
+        search_opts = {
+            'volume_id': volume_id,
+            'name': backup_name
+        }
+
+        backups = cinder_client.backups.list(
+            search_opts=search_opts)
+        for backup in backups:
+            ctx.logger.info("Remove snapshot: {}".format(backup.id))
+            backup.delete()
+
+        # check that we deleted any backups with such name
+        retry = 10
+        while True:
+            backups = cinder_client.backups.list(
+                search_opts=search_opts)
+            if not len(backups):
+                break
+
+            ctx.logger.info("{}: have {} backups"
+                            .format(retry, len(backups)))
+            time.sleep(30)
+            retry -= 1
+
+            if retry <= 0:
+                raise cfy_exc.RecoverableError("Still have {} backups"
+                                               .format(len(backups)))
     else:
         # search snaphot for delete
         search_opts = {
