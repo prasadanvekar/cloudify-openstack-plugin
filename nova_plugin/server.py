@@ -468,6 +468,10 @@ def stop(nova_client, **kwargs):
         ctx.logger.info('Server is already stopped')
 
 
+def _get_snapshot_name(ctx, kwargs):
+    return "vm-{}-{}".format(get_openstack_id(ctx), kwargs["snapshot_name"])
+
+
 @operation
 @with_nova_client
 def snapshot_create(nova_client, **kwargs):
@@ -478,9 +482,10 @@ def snapshot_create(nova_client, **kwargs):
 
     ctx.logger.info("Create snapshot for {}".format(server.human_id))
 
-    snapshot_name = "vm-{}".format(kwargs["snapshot_name"])
+    snapshot_name = _get_snapshot_name(ctx, kwargs)
     snapshot_rotation = int(kwargs["snapshot_rotation"])
-    if snapshot_rotation > 0:
+    snapshot_incremental = kwargs["snapshot_incremental"]
+    if not snapshot_incremental:
         server.backup(snapshot_name, kwargs["snapshot_type"],
                       snapshot_rotation)
         ctx.logger.info("Server backup {} creation started"

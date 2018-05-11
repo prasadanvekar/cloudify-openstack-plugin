@@ -25,6 +25,7 @@ from openstack_plugin_common import (delete_resource_and_runtime_properties,
                                      validate_resource,
                                      add_list_to_runtime_properties,
                                      create_object_dict,
+                                     get_openstack_id,
                                      COMMON_RUNTIME_PROPERTIES_KEYS,
                                      OPENSTACK_AZ_PROPERTY,
                                      OPENSTACK_ID_PROPERTY,
@@ -81,6 +82,34 @@ def create(cinder_client, status_attempts, status_timeout, args, **kwargs):
 @operation
 @with_cinder_client
 def delete(cinder_client, **kwargs):
+    # seach snapshots for volume
+    search_opts = {
+        'volume_id': get_openstack_id(ctx),
+    }
+    snapshots = cinder_client.volume_snapshots.list(search_opts=search_opts)
+
+    for snapshot in snapshots:
+        ctx.logger.info("Remove snapshot: {}".format(snapshot.id))
+        snapshot.delete()
+
+    # check that we deleted everything
+    retry = 10
+    while True:
+        snapshots = cinder_client.volume_snapshots.list(
+            search_opts=search_opts)
+        if not len(snapshots):
+            break
+
+        ctx.logger.info("{}: have {} snapshots"
+                        .format(retry, len(snapshots)))
+        time.sleep(30)
+        retry -= 1
+
+        if retry <= 0:
+            raise cfy_exc.RecoverableError("Still have {} snapshots"
+                                           .format(len(snapshots)))
+
+    # remove volume itself
     delete_resource_and_runtime_properties(ctx, cinder_client,
                                            RUNTIME_PROPERTIES_KEYS)
 
@@ -114,22 +143,82 @@ def get_attachment(cinder_client, volume_id, server_id):
             return attachment
 
 
+def _get_snapshot_name(ctx, kwargs):
+    return "vol-{}-{}".format(get_openstack_id(ctx), kwargs["snapshot_name"])
+
+
 @with_cinder_client
 def snapshot_create(cinder_client, **kwargs):
-    volume_id = ctx.instance.runtime_properties[OPENSTACK_ID_PROPERTY]
-    ctx.logger.info("Snapshot create {} in {}", volume_id, kwargs)
+    volume_id = get_openstack_id(ctx)
+
+    backup_name = _get_snapshot_name(ctx, kwargs)
+    ctx.logger.info("Snapshot create: {}".format(backup_name))
+
+    snapshot_incremental = kwargs["snapshot_incremental"]
+    if not snapshot_incremental:
+        cinder_client.backups.create(volume_id, name=backup_name)
+    else:
+        description = kwargs.get("snapshot_type", "")
+        cinder_client.volume_snapshots.create(volume_id,
+                                              force=True,
+                                              name=backup_name,
+                                              description=description,
+                                              metadata=None)
 
 
 @with_cinder_client
 def snapshot_apply(cinder_client, **kwargs):
-    volume_id = ctx.instance.runtime_properties[OPENSTACK_ID_PROPERTY]
-    ctx.logger.info("Snapshot apply {} in {}", volume_id, kwargs)
+    volume_id = get_openstack_id(ctx)
+
+    backup_name = _get_snapshot_name(ctx, kwargs)
+    ctx.logger.info("Snapshot apply {} to {}".format(backup_name, volume_id))
+
+    snapshot_incremental = kwargs["snapshot_incremental"]
+    if not snapshot_incremental:
+        ctx.logger.error("Apply backup is unsuported")
+    else:
+        ctx.logger.error("Apply snapshot is unsuported")
 
 
 @with_cinder_client
 def snapshot_delete(cinder_client, **kwargs):
-    volume_id = ctx.instance.runtime_properties[OPENSTACK_ID_PROPERTY]
-    ctx.logger.info("Snapshot delete {} in {}", volume_id, kwargs)
+    volume_id = get_openstack_id(ctx)
+
+    backup_name = _get_snapshot_name(ctx, kwargs)
+    ctx.logger.info("Snapshot for remove: {}".format(backup_name))
+
+    snapshot_incremental = kwargs["snapshot_incremental"]
+    if not snapshot_incremental:
+        ctx.logger.error("Remove backup unsuported")
+    else:
+        # search snaphot for delete
+        search_opts = {
+            'volume_id': volume_id,
+            'display_name': backup_name
+        }
+
+        snapshots = cinder_client.volume_snapshots.list(
+            search_opts=search_opts)
+        for snapshot in snapshots:
+            ctx.logger.info("Remove snapshot: {}".format(snapshot.id))
+            snapshot.delete()
+
+        # check that we deleted any snapshots with such name
+        retry = 10
+        while True:
+            snapshots = cinder_client.volume_snapshots.list(
+                search_opts=search_opts)
+            if not len(snapshots):
+                break
+
+            ctx.logger.info("{}: have {} snapshots"
+                            .format(retry, len(snapshots)))
+            time.sleep(30)
+            retry -= 1
+
+            if retry <= 0:
+                raise cfy_exc.RecoverableError("Still have {} snapshots"
+                                               .format(len(snapshots)))
 
 
 @operation
